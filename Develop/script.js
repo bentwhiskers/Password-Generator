@@ -125,20 +125,30 @@ function generatePassword() {
             return null;
         }
 
-        
+    var userCharacters = [];
+    if (includelowerCasedCharacters === true) {
+        userCharacters = userCharacters.concat(lowerCasedCharacters);
+    }
+    if (includeupperCasedCharacters === true) {
+        userCharacters = userCharacters.concat(upperCasedCharacters);
+    }
+    if (includenumericCharacters === true) {
+        userCharacters = userCharacters.concat(numericCharacters);
+    }
+    if (includespecialCharacters === true) {
+        userCharacters = userCharacters.concat(specialCharacters);
+    }
 
+    var actualPass = "";
 
-      
-    
-    
-    
-    // ask for character types
-    // validate that they entered at least one
-    // run a for loop that creates the password based on length
-    // return that created password
-    return
+    for (var i = 0; i < passwordLength; i++) {
+       var randomIndex = Math.floor(Math.random() * userCharacters.length)
+       var actualChar = userCharacters[randomIndex];
+       actualPass = actualPass + actualChar;
+    }
+
+    return actualPass;
 
 }
 
-// Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
